@@ -26,6 +26,9 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            isMinifyEnabled = false
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -71,6 +74,7 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-livedata:2.4.0")
     implementation ("androidx.lifecycle:lifecycle-runtime:2.4.0")
 
-
+    implementation ("com.github.bumptech.glide:glide:4.11.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
 
 }
