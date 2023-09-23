@@ -1,5 +1,6 @@
 package com.example.matrimonialapp.activity
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -17,6 +18,10 @@ class MainActivity : AppCompatActivity() {
 
     private var viewModel: MainViewModel? = null
     private lateinit var mainAdapter: MainAdapter
+
+    companion object{
+        lateinit var appContext: Context
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,5 +65,10 @@ class MainActivity : AppCompatActivity() {
                 // TODO: sync decline status in db
             }
         }.show(supportFragmentManager, "bottom")
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        appContext = this
     }
 }
