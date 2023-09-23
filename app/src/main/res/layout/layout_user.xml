@@ -43,7 +43,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Surbhi S"
-            android:drawableStart="@drawable/verified_account_24px"
             android:drawablePadding="8dp"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -53,7 +52,7 @@
             android:includeFontPadding="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            app:drawableStartCompat="@drawable/verified_account_24px" />
 
         <TextView
             android:id="@+id/tvAge"
