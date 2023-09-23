@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    android:background="@drawable/curve_background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -44,9 +43,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Surbhi S"
+            android:drawableStart="@drawable/verified_account_24px"
+            android:drawablePadding="8dp"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="32sp"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:includeFontPadding="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -60,6 +63,7 @@
             android:textSize="16sp"
             android:includeFontPadding="false"
             android:layout_marginTop="4dp"
+            android:layout_marginStart="4dp"
             app:layout_constraintStart_toStartOf="@id/tvUsername"
             app:layout_constraintTop_toBottomOf="@+id/tvUsername"
             tools:text="25 yrs" />

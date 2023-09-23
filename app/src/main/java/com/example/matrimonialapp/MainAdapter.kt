@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.matrimonialapp.network.Model
+
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
@@ -52,11 +56,16 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
                 text = "${user.dob?.age ?: ""} \u2022 ${user.location?.city ?: ""}, ${user.location?.state}"
             }
 
+            var requestOptions = RequestOptions()
+            requestOptions = requestOptions.transform(CenterCrop())
+                .transform(RoundedCorners(8))
+
             Glide.with(itemView.context)
                 .load(user.picture?.large)
                 .centerInside()
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_background)
+                .apply(requestOptions)
                 .into(itemView.findViewById(R.id.ivUserImage))
         }
     }
