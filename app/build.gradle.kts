@@ -77,4 +77,7 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.11.0")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
 
+    // lottie animation
+    implementation ("com.airbnb.android:lottie:5.2.0")
+
 }
