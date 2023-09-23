@@ -33,7 +33,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ivUserImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -63,12 +63,12 @@
             android:includeFontPadding="false"
             android:layout_marginTop="4dp"
             android:layout_marginStart="4dp"
+            android:maxLines="1"
+            android:ellipsize="end"
             app:layout_constraintStart_toStartOf="@id/tvUsername"
             app:layout_constraintTop_toBottomOf="@+id/tvUsername"
             tools:text="25 yrs" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

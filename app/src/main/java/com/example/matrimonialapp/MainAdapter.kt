@@ -13,7 +13,9 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.matrimonialapp.network.Model
 
 
-class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
+class MainAdapter(
+    val onCardClick: (user: Model.Users.Results)-> Unit
+) : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
 
     private var data: ArrayList<Model.Users.Results> = ArrayList()
 
@@ -42,7 +44,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.MainViewHolder>() {
         init {
             itemView.setOnClickListener {
                 if (adapterPosition == RecyclerView.NO_POSITION) return@setOnClickListener
-//                onCardlessBankSelect.invoke(data[adapterPosition])
+                onCardClick.invoke(data[adapterPosition])
             }
         }
 

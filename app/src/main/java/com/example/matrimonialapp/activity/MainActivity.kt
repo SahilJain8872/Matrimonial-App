@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.matrimonialapp.MainAdapter
 import com.example.matrimonialapp.R
 import com.example.matrimonialapp.Response
+import com.example.matrimonialapp.UserBottomSheet
+import com.example.matrimonialapp.network.Model
 import com.example.matrimonialapp.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +23,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainAdapter = MainAdapter()
+        mainAdapter = MainAdapter { user ->
+            showBottomSheet(user)
+        }
         findViewById<RecyclerView>(R.id.rvUsers).apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = mainAdapter
@@ -47,5 +51,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+    private fun showBottomSheet(user: Model.Users.Results){
+        UserBottomSheet(user).show(supportFragmentManager, "bottom")
     }
 }
