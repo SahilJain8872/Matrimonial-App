@@ -1,7 +1,8 @@
-package com.example.matrimonialapp
+package com.example.matrimonialapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.matrimonialapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
