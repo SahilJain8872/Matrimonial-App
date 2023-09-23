@@ -25,8 +25,8 @@ class Model {
 
         data class Info(
             @SerializedName("seed") val seed: String?,
-            @SerializedName("results") val results: Int?,
-            @SerializedName("page") val page: Int?,
+            @SerializedName("results") val results: String?,
+            @SerializedName("page") val page: String?,
             @SerializedName("version") val version: String?
         )
 
@@ -37,7 +37,7 @@ class Model {
         )
 
         data class Street(
-            @SerializedName("number") val number: Int?,
+            @SerializedName("number") val number: String?,
             @SerializedName("name") val name: String?
         )
 
@@ -58,7 +58,7 @@ class Model {
             @SerializedName("city") val city: String?,
             @SerializedName("state") val state: String?,
             @SerializedName("country") val country: String?,
-            @SerializedName("postcode") val postcode: Int?,
+            @SerializedName("postcode") val postcode: String?,
             @SerializedName("coordinates") val coordinates: Coordinates?,
             @SerializedName("timezone") val timezone: Timezone?
         )
@@ -75,12 +75,12 @@ class Model {
 
         data class Dob(
             @SerializedName("date") val date: String?,
-            @SerializedName("age") val age: Int?
+            @SerializedName("age") val age: String?
         )
 
         data class Registered(
             @SerializedName("date") val date: String?,
-            @SerializedName("age") val age: Int?
+            @SerializedName("age") val age: String?
         )
 
         data class Id(
