@@ -15,8 +15,9 @@ class APIClient {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+
         @Synchronized
-        fun getApiInterface() =  getClient().create(ApiInterface::class.java)
+        fun getApiInterface(): ApiInterface = getClient().create(ApiInterface::class.java)
 
     }
 
