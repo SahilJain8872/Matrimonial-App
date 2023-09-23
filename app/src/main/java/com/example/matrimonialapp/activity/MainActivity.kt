@@ -53,6 +53,12 @@ class MainActivity : AppCompatActivity() {
         })
     }
     private fun showBottomSheet(user: Model.Users.Results){
-        UserBottomSheet(user).show(supportFragmentManager, "bottom")
+        UserBottomSheet(user) { isAccepted ->
+            if(isAccepted){
+                // TODO: sync accepted status in db
+            }else{
+                // TODO: sync decline status in db
+            }
+        }.show(supportFragmentManager, "bottom")
     }
 }

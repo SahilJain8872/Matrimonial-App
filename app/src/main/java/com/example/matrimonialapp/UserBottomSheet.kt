@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.example.matrimonialapp.network.Model
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class UserBottomSheet(val users: Model.Users.Results) : BottomSheetDialogFragment() {
+class UserBottomSheet(val users: Model.Users.Results, var onClick: (Boolean)->Unit) : BottomSheetDialogFragment() {
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -30,6 +30,15 @@ class UserBottomSheet(val users: Model.Users.Results) : BottomSheetDialogFragmen
         }
         view.findViewById<TextView>(R.id.tvEmail).apply {
             text = "Email: ${users.email}"
+        }
+
+        view.findViewById<TextView>(R.id.tvAccept).setOnClickListener {
+            onClick.invoke(true)
+            dismiss()
+        }
+        view.findViewById<TextView>(R.id.tvDecline).setOnClickListener {
+            onClick.invoke(false)
+            dismiss()
         }
     }
 

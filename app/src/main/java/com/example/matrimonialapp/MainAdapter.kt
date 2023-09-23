@@ -65,8 +65,8 @@ class MainAdapter(
             Glide.with(itemView.context)
                 .load(user.picture?.large)
                 .centerInside()
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.unknown)
+                .error(R.drawable.unknown)
                 .apply(requestOptions)
                 .into(itemView.findViewById(R.id.ivUserImage))
         }
