@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object{
         lateinit var appContext: Context
-        lateinit var lifecycleOwner: LifecycleOwner
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,7 +79,6 @@ class MainActivity : AppCompatActivity() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         appContext = this
-        lifecycleOwner = this
     }
 
     private fun showLoader(show: Boolean){

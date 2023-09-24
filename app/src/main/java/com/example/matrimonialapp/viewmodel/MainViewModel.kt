@@ -24,7 +24,7 @@ class MainViewModel : ViewModel() {
             try{
                 val result = mainRepository.getUsers(userCount.toString())
                 withContext(Dispatchers.Main){
-                    result?.observe(MainActivity.lifecycleOwner){ data->
+                    result?.observeForever { data->
                         if(data.isNullOrEmpty()){
                             usersList.postValue(Response.error(Throwable("unable to fetch users")))
                         }else{
