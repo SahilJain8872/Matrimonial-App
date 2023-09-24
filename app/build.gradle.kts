@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin")
 }
 
 android {
@@ -31,16 +32,24 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
 
     }
     buildFeatures {
         viewBinding = true
     }
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
+kotlin {
+    jvmToolchain(8)
 }
 
 dependencies {
@@ -52,11 +61,14 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    implementation ("androidx.fragment:fragment-ktx:1.2.5")
 
     // added coroutines dependencies
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha02")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+
+    // added hilt dependencies
+    implementation ("com.google.dagger:hilt-android:2.47")
+    kapt ("com.google.dagger:hilt-compiler:2.47")
 
     // added room dependencies
     implementation ("androidx.room:room-runtime:2.5.2")
@@ -67,13 +79,8 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
     implementation ("com.squareup.retrofit2:adapter-rxjava2:2.4.0")
 
-    // livedata dependancies
-    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.4.0")
-    implementation ("androidx.lifecycle:lifecycle-livedata:2.4.0")
-    implementation ("androidx.lifecycle:lifecycle-runtime:2.4.0")
-
     implementation ("com.github.bumptech.glide:glide:4.11.0")
-    annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
+//    annotationProcessor ("com.github.bumptech.glide:compiler:4.11.0")
 
     // lottie animation
     implementation ("com.airbnb.android:lottie:5.2.0")

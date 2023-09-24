@@ -2,12 +2,12 @@ package com.example.matrimonialapp.repository
 
 import com.example.matrimonialapp.core.Mapper
 import com.example.matrimonialapp.db.DBManager
-import com.example.matrimonialapp.core.Response
 import com.example.matrimonialapp.db.entity.UserEntity
 import com.example.matrimonialapp.network.APIClient
 import java.lang.Exception
+import javax.inject.Inject
 
-class MainRepository {
+class MainRepository @Inject constructor(val dbManager: DBManager) {
 
     fun getUsers(queryData: String) = try{
         val result = APIClient.getApiInterface().getUsers(queryData).execute()
@@ -26,12 +26,12 @@ class MainRepository {
         getUsersListFromDB()
     }
 
-    fun insertUserInDB(userEntity: UserEntity) = DBManager.insertUser(userEntity)
+    fun insertUserInDB(userEntity: UserEntity) = dbManager.insertUser(userEntity)
 
-    fun insertUserListInDB(users: List<UserEntity>) = DBManager.insertUserList(users)
+    fun insertUserListInDB(users: List<UserEntity>) = dbManager.insertUserList(users)
 
-    fun updateUserInDB(user: UserEntity) = DBManager.updateUser(user)
+    fun updateUserInDB(user: UserEntity) = dbManager.updateUser(user)
 
-    fun getUsersListFromDB() = DBManager.getUsersList()
+    fun getUsersListFromDB() = dbManager.getUsersList()
 
 }
