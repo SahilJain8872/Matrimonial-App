@@ -13,6 +13,7 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.matrimonialapp.adapter.MainAdapter
 import com.example.matrimonialapp.R
 import com.example.matrimonialapp.core.Response
+import com.example.matrimonialapp.core.isNetworkAvailable
 import com.example.matrimonialapp.fragment.UserBottomSheet
 import com.example.matrimonialapp.network.Model
 import com.example.matrimonialapp.viewmodel.MainViewModel
@@ -39,7 +40,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         setUpObserver()
-        viewModel?.getUsers(100)
+        if(isNetworkAvailable()){
+            viewModel?.getUsers(100)
+        }else{
+            viewModel?.getUsersFromDB()
+        }
     }
 
     private fun setUpObserver(){

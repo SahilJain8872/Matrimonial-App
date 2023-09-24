@@ -21,4 +21,11 @@ class MainViewModel : ViewModel() {
             usersList.postValue(mainRepository.getUsers(userCount.toString()))
         }
     }
+
+    fun getUsersFromDB(){
+        usersList.value = Response.loading()
+        viewModelScope.launch(Dispatchers.IO) {
+            usersList.postValue(mainRepository.getUsersListFromDB())
+        }
+    }
 }

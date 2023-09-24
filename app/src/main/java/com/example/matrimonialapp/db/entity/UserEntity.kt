@@ -37,5 +37,8 @@ data class UserEntity (
     var email: String,
 
     @ColumnInfo(name = "status")
-    var status: String
+    var status: String,
+
+    @ColumnInfo(name = "picture")
+    var picture: String
 )
