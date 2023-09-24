@@ -5,4 +5,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="decline">Decline</string>
     <string name="accept">Accept</string>
+    <string name="search_error">Error in fetching users for this moment, Please try after sometime.</string>
 </resources>
