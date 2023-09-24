@@ -1,4 +1,4 @@
-package com.example.matrimonialapp
+package com.example.matrimonialapp.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.example.matrimonialapp.R
 import com.example.matrimonialapp.network.Model
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 

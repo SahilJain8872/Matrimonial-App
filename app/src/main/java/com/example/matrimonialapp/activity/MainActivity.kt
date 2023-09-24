@@ -10,17 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
-import com.example.matrimonialapp.DBManager
-import com.example.matrimonialapp.MainAdapter
+import com.example.matrimonialapp.adapter.MainAdapter
 import com.example.matrimonialapp.R
-import com.example.matrimonialapp.Response
-import com.example.matrimonialapp.UserBottomSheet
-import com.example.matrimonialapp.db.entity.UserEntity
+import com.example.matrimonialapp.core.Response
+import com.example.matrimonialapp.fragment.UserBottomSheet
 import com.example.matrimonialapp.network.Model
 import com.example.matrimonialapp.viewmodel.MainViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -45,11 +40,6 @@ class MainActivity : AppCompatActivity() {
 
         setUpObserver()
         viewModel?.getUsers(100)
-
-        CoroutineScope(Dispatchers.IO).launch {
-            DBManager.insertUser(UserEntity("12345","Sahil","Jain","25","Male","af","dfasfd","dasfdaf","342433","sid@8872","Single"))
-            DBManager.getUsersList()
-        }
     }
 
     private fun setUpObserver(){

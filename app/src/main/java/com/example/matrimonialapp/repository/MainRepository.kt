@@ -1,7 +1,7 @@
 package com.example.matrimonialapp.repository
 
-import com.example.matrimonialapp.DBManager
-import com.example.matrimonialapp.Response
+import com.example.matrimonialapp.db.DBManager
+import com.example.matrimonialapp.core.Response
 import com.example.matrimonialapp.db.entity.UserEntity
 import com.example.matrimonialapp.network.APIClient
 import java.lang.Exception

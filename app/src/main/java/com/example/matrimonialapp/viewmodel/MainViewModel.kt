@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.matrimonialapp.network.Model
 import com.example.matrimonialapp.repository.MainRepository
-import com.example.matrimonialapp.Response
+import com.example.matrimonialapp.core.Response
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -1,7 +1,6 @@
-package com.example.matrimonialapp
+package com.example.matrimonialapp.db
 
 import com.example.matrimonialapp.activity.MainActivity
-import com.example.matrimonialapp.db.AppDatabase
 import com.example.matrimonialapp.db.entity.UserEntity
 
 class DBManager {

@@ -1,4 +1,4 @@
-package com.example.matrimonialapp
+package com.example.matrimonialapp.core
 
 data class Response<out T>(
     val status: Status,
