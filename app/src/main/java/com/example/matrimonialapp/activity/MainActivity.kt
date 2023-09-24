@@ -4,17 +4,13 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.Group
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.LottieAnimationView
 import com.example.matrimonialapp.adapter.MainAdapter
-import com.example.matrimonialapp.R
 import com.example.matrimonialapp.core.Response
 import com.example.matrimonialapp.core.UserStatus
+import com.example.matrimonialapp.databinding.ActivityMainBinding
 import com.example.matrimonialapp.db.entity.UserEntity
 import com.example.matrimonialapp.fragment.UserBottomSheet
 import com.example.matrimonialapp.viewmodel.MainViewModel
@@ -23,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private var viewModel: MainViewModel? = null
     private lateinit var mainAdapter: MainAdapter
+    private lateinit var binding: ActivityMainBinding
 
     companion object{
         lateinit var appContext: Context
@@ -30,12 +27,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainAdapter = MainAdapter { user ->
             showBottomSheet(user)
         }
-        findViewById<RecyclerView>(R.id.rvUsers).apply {
+       binding.rvUsers.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             adapter = mainAdapter
         }
@@ -82,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showLoader(show: Boolean){
-        findViewById<LottieAnimationView>(R.id.loader).visibility = if (show){
+        binding.loader.visibility = if (show){
             View.VISIBLE
         }else{
             View.GONE
@@ -90,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showError(){
-        findViewById<RecyclerView>(R.id.rvUsers).visibility = View.GONE
-        findViewById<Group>(R.id.group_error).visibility = View.VISIBLE
+        binding.rvUsers.visibility = View.GONE
+        binding.groupError.visibility = View.VISIBLE
     }
 }

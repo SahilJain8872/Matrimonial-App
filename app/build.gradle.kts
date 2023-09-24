@@ -38,6 +38,9 @@ android {
         jvmTarget = "17"
 
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -55,14 +58,9 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-alpha02")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
 
-    // added dagger dependencies
-    implementation ("com.google.dagger:dagger:2.42")
-    kapt ("com.google.dagger:dagger-compiler:2.38")
-
     // added room dependencies
     implementation ("androidx.room:room-runtime:2.5.2")
     kapt ("androidx.room:room-compiler:2.5.2")
-    implementation ("com.google.android.material:material:1.9.0")
 
     // retrofit dependencies
     implementation ("com.squareup.retrofit2:retrofit:2.3.0")

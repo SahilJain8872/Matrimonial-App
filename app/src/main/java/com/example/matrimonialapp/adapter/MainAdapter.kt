@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -13,6 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.matrimonialapp.R
 import com.example.matrimonialapp.core.UserStatus
+import com.example.matrimonialapp.databinding.LayoutUserBinding
 import com.example.matrimonialapp.db.entity.UserEntity
 
 
@@ -23,10 +22,7 @@ class MainAdapter(
     private var data: List<UserEntity> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        return MainViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.layout_user, parent, false)
-        )
+        return MainViewHolder(LayoutUserBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
@@ -42,10 +38,10 @@ class MainAdapter(
         notifyDataSetChanged()
     }
 
-    inner class MainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MainViewHolder(private val binding: LayoutUserBinding) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            itemView.setOnClickListener {
+            binding.root.setOnClickListener {
                 if (adapterPosition == RecyclerView.NO_POSITION) return@setOnClickListener
                 onCardClick.invoke(data[adapterPosition])
             }
@@ -53,11 +49,11 @@ class MainAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bind(user: UserEntity) {
-            itemView.findViewById<TextView>(R.id.tvUsername).apply {
+            binding.tvUsername.apply {
                 text = "${user.firstName} ${user.lastName}"
             }
 
-            itemView.findViewById<TextView>(R.id.tvAge).apply {
+            binding.tvAge.apply {
                 text = "${user.age} \u2022 ${user.city}, ${user.state}"
             }
 
@@ -71,7 +67,7 @@ class MainAdapter(
                 .placeholder(R.drawable.unknown)
                 .error(R.drawable.unknown)
                 .apply(requestOptions)
-                .into(itemView.findViewById(R.id.ivUserImage))
+                .into(binding.ivUserImage)
 
             setStatus(user.status)
 
@@ -79,7 +75,7 @@ class MainAdapter(
 
         @SuppressLint("UseCompatLoadingForDrawables")
         fun setStatus(status: String){
-            val ivStatus = itemView.findViewById<ImageView>(R.id.ivUserStatus)
+            val ivStatus = binding.ivUserStatus
             when(status){
                 UserStatus.NONE.toString()->{
                     ivStatus.visibility = View.GONE
