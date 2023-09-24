@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "users_list")
 data class UserEntity (
     @PrimaryKey
-    var id: Long,
+    var id: String,
 
     @ColumnInfo(name = "first_name")
     var firstName: String,
