@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,9 +14,9 @@ import com.airbnb.lottie.LottieAnimationView
 import com.example.matrimonialapp.adapter.MainAdapter
 import com.example.matrimonialapp.R
 import com.example.matrimonialapp.core.Response
-import com.example.matrimonialapp.core.isNetworkAvailable
+import com.example.matrimonialapp.core.UserStatus
+import com.example.matrimonialapp.db.entity.UserEntity
 import com.example.matrimonialapp.fragment.UserBottomSheet
-import com.example.matrimonialapp.network.Model
 import com.example.matrimonialapp.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object{
         lateinit var appContext: Context
+        lateinit var lifecycleOwner: LifecycleOwner
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,11 +42,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         setUpObserver()
-        if(isNetworkAvailable()){
-            viewModel?.getUsers(100)
-        }else{
-            viewModel?.getUsersFromDB()
-        }
+
+        viewModel?.getUsers(13)
     }
 
     private fun setUpObserver(){
@@ -55,10 +54,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 Response.Status.SUCCESS -> {
                     showLoader(false)
-                    if(data.data?.results.isNullOrEmpty()){
+                    if(data.data.isNullOrEmpty()){
                         showError()
                     }else{
-                        mainAdapter.submitList(data.data?.results ?: arrayListOf())
+                        mainAdapter.submitList(data.data)
                     }
                 }
                 Response.Status.ERROR -> {
@@ -68,12 +67,12 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-    private fun showBottomSheet(user: Model.Users.Results){
+    private fun showBottomSheet(user: UserEntity){
         UserBottomSheet(user) { isAccepted ->
             if(isAccepted){
-                // TODO: sync accepted status in db
+                viewModel?.updateUser(user.apply { this.status = UserStatus.ACCEPT.toString() })
             }else{
-                // TODO: sync decline status in db
+                viewModel?.updateUser(user.apply { this.status = UserStatus.DECLINE.toString() })
             }
         }.show(supportFragmentManager, "bottom")
     }
@@ -81,6 +80,7 @@ class MainActivity : AppCompatActivity() {
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
         appContext = this
+        lifecycleOwner = this
     }
 
     private fun showLoader(show: Boolean){

@@ -13,16 +13,17 @@ class MainRepository {
         val result = APIClient.getApiInterface().getUsers(queryData).execute()
         if(result.isSuccessful){
                 if (result.body() != null) {
-                    insertUserListInDB(Mapper.getUserEntityFromUsers(result.body()!!))
-                    Response.success(result.body())
+                    val userEntityList = Mapper.getUserEntityFromUsers(result.body()!!)
+                    insertUserListInDB(userEntityList)
+                    getUsersListFromDB()
                 } else {
-                    Response.error(Throwable("unable to fetch users"))
+                    getUsersListFromDB()
                 }
         }else{
-           Response.error(Throwable("unable to fetch users"))
+            getUsersListFromDB()
         }
     }catch (e: Exception){
-        Response.error(Throwable("unable to fetch users"))
+        getUsersListFromDB()
     }
 
     fun insertUserInDB(userEntity: UserEntity) = DBManager.insertUser(userEntity)
@@ -31,15 +32,6 @@ class MainRepository {
 
     fun updateUserInDB(user: UserEntity) = DBManager.updateUser(user)
 
-    fun getUsersListFromDB() = try{
-        val result = DBManager.getUsersList()
-        if(result.isNullOrEmpty()){
-            Response.error(Throwable("unable to fetch users"))
-        }else{
-            Response.success(Mapper.getUsersFromUserEntity(result))
-        }
-    }catch (e: Exception){
-        Response.error(Throwable("unable to fetch users"))
-    }
+    fun getUsersListFromDB() = DBManager.getUsersList()
 
 }

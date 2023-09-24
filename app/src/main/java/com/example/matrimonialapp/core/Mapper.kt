@@ -43,6 +43,7 @@ class Mapper {
                         id = null,
                         picture = Model.Users.Picture(user.picture,"",""),
                         nat = null,
+                        status = user.status
                 ))
             }
             return Model.Users(list,null)

@@ -1,5 +1,6 @@
 package com.example.matrimonialapp.network
 
+import com.example.matrimonialapp.core.UserStatus
 import com.google.gson.annotations.SerializedName
 
 class Model {
@@ -20,7 +21,8 @@ class Model {
             @SerializedName("cell") val cell: String?,
             @SerializedName("id") val id: Id?,
             @SerializedName("picture") val picture: Picture?,
-            @SerializedName("nat") val nat: String?
+            @SerializedName("nat") val nat: String?,
+            var status: String
         )
 
         data class Info(

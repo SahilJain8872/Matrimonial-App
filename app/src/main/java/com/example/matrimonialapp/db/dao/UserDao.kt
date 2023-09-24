@@ -20,5 +20,5 @@ interface UserDao {
     fun update(entity: UserEntity)
 
     @Query("SELECT * FROM users_list")
-    fun getAllEntities(): List<UserEntity>
+    fun getAllEntities(): LiveData<List<UserEntity>>
 }
